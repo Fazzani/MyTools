@@ -1,0 +1,38 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion "19.1.0"
+    defaultConfig {
+        applicationId "com.tools.heni.mytools"
+        minSdkVersion 15
+        targetSdkVersion 19
+        versionCode 1
+        versionName "1.0"
+        signingConfig signingConfigs.playstore
+    }
+    signingConfigs {
+        playstore {
+            keyAlias 'mykeyalias'
+            storeFile file('C:/Users/Heni/Downloads/keysStore')
+            keyPassword 'Fezzeni82'
+            storePassword 'Fezzeni82'
+        }
+    }
+    buildTypes {
+        release {
+            apply plugin: 'java'
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable true
+            signingConfig signingConfigs.playstore
+        }
+    }
+    productFlavors {
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:support-v4:19.+'
+}
